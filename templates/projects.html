@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+<header>
+  {% include "parts/header.html" %}
+</header>
+<main>
+  <h1>Projects</h1>
+  {% set section = get_section(path="projects/_index.md") %}
+  {% for project in section.pages %}
+    <a href={{project.extra.website}} class="item no-default-link">
+      <div>
+        <h3>{{ project.title }}</h3>
+        <p>{{ project.description }}</p>
+        <div class="chips">
+          {% if project.taxonomies.tags and project.taxonomies.tags | length > 0 %}
+              {% for tag in project.taxonomies.tags %}
+                  <span class="tag">{{ tag }}</span>
+              {% endfor %}
+          {% endif %}
+        </div>
+      </div>
+    </a>
+    {% if not loop.last %}
+        <hr/>
+    {% endif %}
+  {% endfor %} 
+</main>
+
+{% endblock content %}

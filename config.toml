@@ -1,0 +1,19 @@
+base_url = "https://micahcantor.xyz"
+
+description = "Micah Cantor's personal site."
+
+title = "Micah Cantor"
+
+compile_sass = true
+
+build_search_index = false
+
+[markdown]
+highlight_code = true
+highlight_theme = "one-dark"
+
+[extra]
+social_media = [
+    {name = "GitHub", url = "https://github.com/micahcantor"},
+    {name = "LinkedIn", url = "https://linkedin.com/in/micah-cantor"},
+]

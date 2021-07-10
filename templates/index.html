@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <header>
+        {% include "parts/header.html" %}
+        <p>Hi, I'm Micah. I'm a student at Grinnell College studying computer science and math. 
+        Here you'll find my writing on my interests in functional programming, web development, and open source software.</p>
+    </header>
+    <main>
+        <h1>Blog</h1>
+        {% set section = get_section(path="blog/_index.md") %}
+        {% for page in section.pages %}
+            <a class="item no-default-link" href={{page.permalink | safe }}>
+            <div>
+                <h3>{{ page.title }}</h3>
+                <time>{{ page.date }}</time>
+                <p>{{ page.description }}</p>
+                <div class="chips">
+                    {% if page.taxonomies.tags and page.taxonomies.tags | length > 0 %}
+                        {% for tag in page.taxonomies.tags %}
+                            <span class="tag">{{ tag }}</span>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+            </a>
+            {% if not loop.last %}
+                <hr/>
+            {% endif %}
+        {% endfor %}
+    </main>
+{% endblock content %}

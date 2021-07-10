@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% import "macros.html" as macros %}
+
+{% block title %}
+    {{ page.title }} - {{ config.title }}
+{% endblock %}
+
+{% block page_meta %}
+    <meta content="{{ page.description | safe | default(value='') | truncate(length=150) }}" name="description"/>
+{% endblock page_meta %}
+
+{% block content %}
+    {% if page.extra.katex %}
+        {{ macros::katex() }}
+    {% endif %}
+    <main class="article-content">
+        <p><a href="/">~</a>/blog/{{ page.slug }}</p>
+        <h1>{{ page.title }}</h1>
+        <p>Published: <time>{{ page.date }}</time>{% if page.updated %}, Updated: <time>{{ page.updated }}</time>{% endif %}</p>
+        <hr />
+        {{ page.content | safe }}
+    </main>
+{% endblock content %}

@@ -1,0 +1,15 @@
+{% macro katex() %}
+<link rel="stylesheet" href="{{ get_url(path="katex.min.css") }}">
+<script defer src="{{ get_url(path="js/katex.min.js")}}"></script>
+<script defer src="{{ get_url(path="js/auto-render.js") }}"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+            delimiters: [
+              {left: "$$", right: "$$", display: true},
+              {left: "$", right: "$", display: false},
+            ]
+        });
+    });
+</script>
+{% endmacro katex %}
