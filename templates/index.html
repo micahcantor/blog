@@ -7,7 +7,7 @@
         Here you'll find my writing on my interests in functional programming, web development, and open source software.</p>
     </header>
     <main>
-        <h1>Blog</h1>
+        <h2>Blog</h2>
         {% set section = get_section(path="blog/_index.md") %}
         {% for page in section.pages %}
             <a class="item no-default-link" href={{page.permalink | safe }}>

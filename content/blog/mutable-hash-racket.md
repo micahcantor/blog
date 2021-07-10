@@ -41,9 +41,9 @@ By using primes in hashing, we decrease the likelihood of *collisions*, the case
 ## Sketching the API
 
 Now that we have our hashing function in hand, let's remember what we are trying to create. Our goal in the end is to provide three basic functions for working with hashes:
-- `racket›(make-hash) -> hash?` : Creates a new, empty hash table
-- `racket›(hash-get hash key) -> any?` : Takes a key and returns the associated value
-- `racket›(hash-set! hash key value) -> void` : Sets the value for a specified key
+- `(make-hash) -> hash?` : Creates a new, empty hash table
+- `(hash-get hash key) -> any?` : Takes a key and returns the associated value
+- `(hash-set! hash key value) -> void` : Sets the value for a specified key
 
 To start, lets declare a struct which will serve as the basis for our design. For now, it's very simple, holding just one property: the table. We also specify the struct to be mutable so that the table property can be altered directly.
 
@@ -51,9 +51,9 @@ To start, lets declare a struct which will serve as the basis for our design. Fo
 (struct hash (table) #:mutable)
 ```
 
-By declaring the struct, Racket automatically provides us with a set of functions for constructing and accessing properties of the hash. Specifically `racket›(hash name table)` creates a new hash, `racket›(hash-table hash)` returns the table for a given hash, and `racket›(set-hash-table! hash value)` sets a new value for the table.
+By declaring the struct, Racket automatically provides us with a set of functions for constructing and accessing properties of the hash. Specifically `(hash name table)` creates a new hash, `(hash-table hash)` returns the table for a given hash, and `(set-hash-table! hash value)` sets a new value for the table.
 
-With just this, we can create the first function in our API, `racket›(make-hash)`, which constructs a new hash with an empty table. For now, we will create a table with a very small initial size, but in practice, this initial size would be much larger.
+With just this, we can create the first function in our API, `(make-hash)`, which constructs a new hash with an empty table. For now, we will create a table with a very small initial size, but in practice, this initial size would be much larger.
 
 ```racket
 ; Creates an empty hash table filled with the value null
@@ -140,7 +140,7 @@ Note that `findf` performs a *sequential* search on the sublist, so if there are
 
 ## Dynamic Hash Resizing
 
-What we have so far works great, except there's one problem: we only allocate the size of our hash once, when we initiate it with `rkt›(make-hash)`. That means that as we fill up our hash with more values, we will start to get a lot more collisions, and with that, worse performance. To mitigate this, we can *dynamically* increase the size of the hash table when it starts to fill up.
+What we have so far works great, except there's one problem: we only allocate the size of our hash once, when we initiate it with `(make-hash)`. That means that as we fill up our hash with more values, we will start to get a lot more collisions, and with that, worse performance. To mitigate this, we can *dynamically* increase the size of the hash table when it starts to fill up.
 
 One way to implement this is to keep track of a *load factor*, or the ratio between the number of values stored in the table and its size. When this load factor crosses a certain threshold, say 80% capacity, we will increase the size of our table.[^3]
 

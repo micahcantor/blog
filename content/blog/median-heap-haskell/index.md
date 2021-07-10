@@ -33,7 +33,7 @@ Let's now turn to the implementation. We will use the [Data.Heap](https://hackag
 data MedianHeap a = MedianHeap (MaxHeap a) (MinHeap a)
 ```
 
-We can now go ahead and write our median function, which takes a `hs›MedianHeap a` and returns `hs›Maybe a`, since it returns `Nothing` if the heap is empty. We also constrain the type of `a` with the `Ord` and `Fractional` typeclasses. The former ensures this is a type that can be stored in a (necessarily ordered) heap, while the latter ensures we can divide it in two. Note the use of `viewHead` from Data.Heap, which takes a `hs›Heap a` and also returns `hs›Maybe a` for the same reason.
+We can now go ahead and write our median function, which takes a `MedianHeap a` and returns `Maybe a`, since it returns `Nothing` if the heap is empty. We also constrain the type of `a` with the `Ord` and `Fractional` typeclasses. The former ensures this is a type that can be stored in a (necessarily ordered) heap, while the latter ensures we can divide it in two. Note the use of `viewHead` from Data.Heap, which takes a `Heap a` and also returns `Maybe a` for the same reason.
 
 ```hs
 median :: (Ord a, Fractional a) => MedianHeap a -> Maybe a
@@ -83,7 +83,7 @@ balance (MedianHeap lesser greater)
 
 Because Data.Heap provides only a 'safe' interface for deconstructing heaps, I've created a helper function `deconstruct`, which converts a heap from Data.Heap into its head and tail, throwing a runtime error if it is empty. In this case, this error will never be thrown, since we don't modify the median-heap if it is empty, since the sizes of both sides would be zero.
 
-With this, the main functions of interacting with our median-heaps are complete, so all that's left is to add some helper functions for converting from lists. First, let's write `fromAscList`, (asc short for ascending) which will just split the list at its middle element (the median), and put its lesser and greater halves into our median heap using the $O(n)$ functions `Heap.fromDescList` and `Heap.fromAscList`. Since the lesser side is a max-heap, a list like `hs›[1, 2, 3]` is actually in *descending* order (the first item to be removed from the heap is last), so we use the corresponding function for that side.
+With this, the main functions of interacting with our median-heaps are complete, so all that's left is to add some helper functions for converting from lists. First, let's write `fromAscList`, (asc short for ascending) which will just split the list at its middle element (the median), and put its lesser and greater halves into our median heap using the $O(n)$ functions `Heap.fromDescList` and `Heap.fromAscList`. Since the lesser side is a max-heap, a list like `[1, 2, 3]` is actually in *descending* order (the first item to be removed from the heap is last), so we use the corresponding function for that side.
 
 ```hs
 fromAscList :: Ord a => [a] -> MedianHeap a

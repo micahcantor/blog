@@ -15,8 +15,8 @@
         {{ macros::katex() }}
     {% endif %}
     <main class="article-content">
-        <p><a href="/">~</a>/blog/{{ page.slug }}</p>
         <h1>{{ page.title }}</h1>
+        <span><a href="/">~</a>/blog/{{ page.slug }}</span>
         <p>Published: <time>{{ page.date }}</time>{% if page.updated %}, Updated: <time>{{ page.updated }}</time>{% endif %}</p>
         <hr />
         {{ page.content | safe }}
