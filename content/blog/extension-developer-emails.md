@@ -84,7 +84,7 @@ Now, I don't know exactly what this company intended to add to my extension, nor
 
 Beyond just the cookies that can be used to track users across the web, Chrome extensions offer many more ways to mine a user's browsing data or personal information, as can be seen in the numerous malware-ridden extensions discussed previously. Some of these abilities are locked behind prompts for user permissions, but especially if they come from an extension that has already been installed, users are likely to just blindly accept an extension's requests for further permissions.
 
-Needless to say, I did not respond to any of these requests, though in hindsight, it might have been fun to probe these senders for more information about their businesses, and how exactly they planned to monetize my users. It does make me wonder how many other extension developers may have received these kinds of requests and 
+Needless to say, I did not respond to any of these requests, though in hindsight, it might have been fun to probe these senders for more information about their businesses, and how exactly they planned to monetize my users. It does make me wonder how many other extension developers may have received these kinds of requests and followed through with them. 
 
 I hope you found this post interesting, and as always, please feel free to reach out [via email](mailto:micahcantor01@gmail.com) with any questions or comments.
 
