@@ -1,6 +1,6 @@
 +++
-title = "The strange, sketchy emails an extension developer receives"
-description = "Where does extension malware come from? It might start from emails like these."
+title = "The strange, sketchy emails a browser extension developer receives"
+description = "Where does extension malware come from? It might originate from emails like these."
 date = 2021-07-09
 draft = true
 [taxonomies]
