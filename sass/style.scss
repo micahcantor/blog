@@ -99,8 +99,11 @@ blockquote {
   }
 
   .social-icons {
-    padding-left: .75em;
+    padding-left: .5em;
     padding-top: .75em;
+    a {
+      padding: 0.2em;
+    }
   }
   .header-links {
     margin-left: auto;
