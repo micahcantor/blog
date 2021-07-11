@@ -32,7 +32,7 @@ Now keep in mind, my extension simply adds a content search bar to the free educ
 > 
 > Thanks for your time anyway!
 
-This is incredibly interesting since immediately we see how much this individual, or the company they represent, value the indiscriminate access to a user's browser extension: 2¢. It makes me wonder what they would have done with my extension to make back that investment, but if I had to guess, it probably wouldn't have been completely benign.
+This is incredibly interesting since immediately we see how much this individual, or the company they represent, value the indiscriminate access to a user's browser extension: 20¢. It makes me wonder what they would have done with my extension to make back that investment, but if I had to guess, it probably wouldn't have been completely benign.
 
 The next request came from "serg scream" on January 27, 2021. This time, instead of an extension buyer, this person wants me to insert their code into my extension, which will seemingly add additional advertising to Google Search. Again, here's the email in full:
 
