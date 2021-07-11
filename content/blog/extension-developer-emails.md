@@ -86,7 +86,7 @@ Beyond just the cookies that can be used to track users across the web, Chrome e
 
 Needless to say, I did not respond to any of these requests, though in hindsight, it might have been fun to probe these senders for more information about their businesses, and how exactly they planned to monetize my users. It does make me wonder how many other extension developers may have received these kinds of requests and followed through with them. 
 
-I hope you found this post interesting, and as always, please feel free to reach out [via email](mailto:micahcantor01@gmail.com) with any questions or comments.
+I hope you found this post interesting, and as always, please feel free to reach out [via email](mailto:micahcantor01@gmail.com) or [on Twitter](https://twitter.com/micah_cantor) with any questions or comments.
 
 ### Notes
 
