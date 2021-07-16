@@ -77,9 +77,9 @@ blockquote {
 .footer-social-media {
   a {
     &:after {
-      content: " \00D8 ";
+      content: "// ";
       display:inline-block;
-      margin-left: 10px;
+      margin: 0px 10px;
       color: black;
     }
     &:last-child:after {
