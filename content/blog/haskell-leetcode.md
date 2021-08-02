@@ -8,7 +8,7 @@ tags = ["haskell", "leetcode"]
 katex = true
 +++
 
-[Leetcode](https://leetcode.com) is a popular site which hosts a database of programming questions and crowd-sourced solutions in different programming lanuages. Recently, I decided to try my hand at solving some of these questions using Haskell, both to improve my skills in the language, and to prepare for future interviews, where I may or may not use Haskell. Unfortunately, Leetcode does not support Haskell as a language you can use to submit answers, but I thought it would be fun nonetheless.
+[Leetcode](https://leetcode.com) is a popular site which hosts a database of programming questions and crowd-sourced solutions in different programming lanuages. Recently, I decided to try my hand at solving some of these questions using Haskell, both to improve my skills in the language, and to prepare for future interviews, where I may or may not use Haskell. Unfortunately, Leetcode does not support using Haskell to submit answers, but I thought it would be fun nonetheless.
 
 One of the difficulties with solving Leetcode questions with a functional langauge like Haskell is that most, if not all, solutions and explanations for a given question are presented in an imperative or object-oriented style. Despite this, I think that thinking functionally can often lead to incredibly elegant solutions to these problems, so I'd like to share some of these interesting ones here. I've also tried to ensure that the solutions are algorithmically efficent -- no brute force answers allowed. Let's jump in.
 
