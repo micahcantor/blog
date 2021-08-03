@@ -2,6 +2,7 @@
 title = "Solving a few Leetcode questions in Haskell"
 date = 2021-08-02
 description = "Exploring some purely functional programming solutions to a few popular Leetcode questions."
+draft = true
 [taxonomies]
 tags = ["haskell", "leetcode"]
 [extra]
