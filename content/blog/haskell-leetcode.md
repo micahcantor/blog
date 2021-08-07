@@ -2,7 +2,6 @@
 title = "Solving a few Leetcode questions in Haskell"
 date = 2021-08-02
 description = "Exploring some purely functional programming solutions to a few popular Leetcode questions."
-draft = true
 [taxonomies]
 tags = ["haskell", "leetcode"]
 [extra]
@@ -79,24 +78,27 @@ merge [(1, 3), (2, 6), (8, 10), (15, 18)]
 
 Here, the end of the first interval extends past the start of the second, so we merge those two together into the interval `(1, 6)`. There is no overlap with the other intervals, so they stay put.
 
-We'll break down this problem into three steps. First, we sort the list by start of the intervals so they appear in ascending order, as in the example. Next, we pair up each interval with its adjacent interval, so `(1, 3)` is paired with `(2, 6)`, `(2, 6)` paired with `(8, 10)` and so on. Then we consider each of these pairs of intervals: if the end of first runs past the start of the second, merge them together, and otherwise just keep the second interval.
+Our first step will be to sort the list by the first element of the tuple, so that possibly-overlapping intervals will sit neatly in sequence. We can do this simply with `sortOn fst`.
 
-Here's the full solution in Haskell:
+Next we want to iterate over our sorted list of tuples with an accumulator list we'll call `merged`. Our base cases are simple enough: if `merged` is empty, we just put the first tuple into merged and continue on, and if our input is empty we return `merged`.
+
+The recursive case is a bit trickier. Here we will compare the first elements of `merged` and our input. If the *end* of the last-merged interval extends past the *beginning* of our next interval, we merge the two by prepending a tuple of the beginning of the last-merged, and the max of the ends of the two tuples. This ensures that overlapping intervals are collapsed together. If they do not overlap, we simply continue on by prepending the next tuple onto our merged list.
+
+Here's my annotated solution looks like in Haskell:
 
 ```hs
-import Data.List (sortOn)
-
 merge :: [(Int, Int)] -> [(Int, Int)]
-merge = map f . zipAdjacent . sortOn fst
+merge = go [] . sortOn fst -- sort then recurse
   where
-    zipAdjacent xs = zip xs (tail xs)
-    f ((a, b), (c, d)) =
-      if b >= c then (a, d) else (c, d)
+    go merged [] = reverse merged -- base case: input is empty
+    go [] (x : xs) = go [x] xs -- base case: merged is empty
+    go ((a, b) : merged) ((c, d) : xs) =
+      if b >= c -- if overlapping
+        then go ((a, max b d) : merged) xs -- collapse intervals
+        else go ((c, d) : (a, b) : merged) xs -- add new interval, leave old
 ```
 
-This solution follows precisely from our strategy. First we sort by the start of the interval with `sortOn fst`. Then we zip together adjacent intervals by zipping with the tail of the sorted list. Finally, we map over the zipped list, keeping the start and end of the interval when they overlap, and otherwise just keeping the second pair.
-
-This solution takes $O(n \cdot \text{log}(n))$ time in total, since sorting takes that long, while `map` and `zip` are $O(n)$ operations.
+You may notice that this pattern of recursion over a structure with an accumulator is eerily reminiscent of a fold, but in this case I couldn't figure out how to translate this `go` function into a fold, since we have the added complexity here of needing to alter our accumulated list as we proceed. If there is a way to do this with a fold (or maybe using [recursion-schemes](https://hackage.haskell.org/package/recursion-schemes)?) that I'm missing, please let me know!
 
 ## [Group Anagrams](https://leetcode.com/problems/group-anagrams/)
 
