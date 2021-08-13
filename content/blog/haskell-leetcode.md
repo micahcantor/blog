@@ -219,9 +219,9 @@ Here we use `init` and `tail` to extract the parts of the respective scans that 
 
 ## Conclusion
 
-So there are my Haskell solutions to these four Leetcode questions. I focused on array/list based questions in this one, but Haskell also excels at solving tree-based questions, with its support for algebraic data types and pattern matching.
+So there are my Haskell solutions to these four Leetcode questions. I focused on list based questions in this one, but Haskell also excels at solving tree-based questions, with its support for algebraic data types and pattern matching. Overall, I think type-driven functional programming has a lot to offer for solving tricky problems like these, so give it a shot!
 
-I hope you found these solutions interesting, or if you see a mistake or an improvement in any of these, please feel free to reach out via [Twitter](https://twitter.com/micah_cantor) or [email](mailto:hello@micahcantor.com).
+I hope you found these solutions interesting, but if you see a mistake or an improvement in any of these, please feel free to reach out via [Twitter](https://twitter.com/micah_cantor) or [email](mailto:hello@micahcantor.com).
 
 ------
 
