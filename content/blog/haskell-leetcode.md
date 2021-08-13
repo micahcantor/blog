@@ -104,24 +104,23 @@ You may notice that this pattern of recursion over a structure with an accumulat
 
 *Given an array of strings, group the anagrams together. You can return the answer in any order.*
 
-In this question, we are given a list of strings, and must group the *anagrams* in the list, i.e. the ones that have all the same characters, yet in a possibly different order. For example, we should have:
+In this question, we are given a list of strings, and must group the *anagrams* in the list, i.e. the ones that have the exact same characters, yet in a possibly different order. For example, we should have:
 
 ```hs
 groupAnagrams ["eat", "tea", "tan", "ate", "nat", "bat"]
   = [["bat"],["eat","tea","ate"],["tan","nat"]]
 ```
 
-As a first step, it might be useful to review how to determine if two strings are anagrams. Since the only requirement is that they have the exact same characters, we can just convert both strings to sets, then compare the sets for equality, like so:
+As a first step, it might be useful to review how to determine if two strings are anagrams. One fairly efficient, yet conceptually simple way of testing this is to just compare the sorted lists for equality, like so[^3]:
 
 ```hs
-import qualified Data.Set as Set
-
+import Data.List (sort)
 -- ex: anagrams "cat" "tac" == True
 anagrams :: [String] -> [String] -> Bool
-anagrams s1 s2 = Set.fromList s1 == Set.fromList s2
+anagrams s1 s2 = sort s1 == sort s2
 ```
 
-Then, in order to group together anagrams, all we would need to do is sort the list according to their set representation, then group together anagrams. The functions `sortBy` and `groupBy` in `Data.List` help us do exactly this, as in the solution below:
+Then, in order to group together anagrams, all we would need to do is sort the list of strings according to their sorted representations, then group together adjacent anagrams. The functions `sortBy` and `groupBy` in `Data.List` help us do exactly this, as in the solution below:
 
 ```hs
 import Data.List (sortBy, groupBy)
@@ -129,23 +128,27 @@ import Data.Function (on)
 
 groupAnagrams :: [String] -> [[String]]
 groupAnagrams =
-  groupBy anagrams . sortBy (compare `on` Set.fromList)
+  groupBy anagrams . sortBy (compare `on` sort)
 ```
 
-This is a pretty clean one-liner, but it may not be the most efficient, with a time complexity of $O(m \cdot \text{log}(m) \cdot n \cdot \text{log}(n))$, where $m$ is the length of the strings, and $n$ is the number of strings. This complexity comes from the $O(n \cdot \text{log}(n))$ time to sort the string sets, and then $O(m \cdot \text{log}(m))$ to convert each of the strings to sets.
+This is a pretty clean one-liner, but it may not be the most efficient, with a time complexity of $O(m \cdot \text{log}(m) \cdot n \cdot \text{log}(n))$, where $m$ is the length of the strings, and $n$ is the number of strings. This complexity comes from the $O(n \cdot \text{log}(n))$ time to sort the list of strings, and then $O(m \cdot \text{log}(m))$ to sort each string.
 
-Can we do any better? Maybe we can if we ditch sorting, and instead use a dictionary. We could, for instance, create a `Map` from string-sets as keys to lists of strings as values. For each string, we insert it into the map at the key of its set representation, appending it to a list of those already seen. Then to extract the groups of anagrams, we just return a list of the values from this map. Here's the idea in Haskell:
+This is also not ideal since we are repeating work here by sorting each string twice: first when we sort the overall list, and again when we group by anagrams.
+
+Can we do any better? Maybe we can if we ditch the `groupBy` approach, and instead use a dictionary. We could, for instance, create a `Map` from sorted strings as keys to lists of strings as values. For each string, we insert it into the map at the key of its sorted representation, appending it to a list of those already seen. This way, if there are anagrams in the list, they are all put in the same "bucket".
+
+Then, to extract the groups of anagrams, we just return a list of the values from this map. Here's the idea in Haskell:
 
 ```hs
 import qualified Data.Map as Map
 
 groupAnagrams' :: [String] -> [[String]]
-groupAnagrams' = Map.elems . foldr insert Map.empty
-  where
-    insert s = Map.insertWith (++) (Set.fromList s) [s]
+groupAnagrams' = 
+  let insert s = Map.insertWith (++) (sort s) [s]
+   in Map.elems . foldr insert Map.empty
 ```
 
-This actually has the same time complexity, since Haskell's `Data.Map` is a persistent data structure with $O(\text{log}(n))$ time cost for insertion, and we still have to convert each string to a set, which also takes $O(\text{log}(m))$ time. However, if this were performance critical, there's more optimizations we could make here with faster hashmap implementations, and my gut says this version would be faster (though I haven't done benchmarking, so who knows!)
+This actually has the same time complexity, since Haskell's `Data.Map` is a persistent data structure with $O(\text{log}(n))$ time cost for insertion, and we still have to sort each string, which also takes $O(\text{log}(m))$ time. However, if this were performance critical, there are more optimizations we could make here with faster hashmap implementations, and my gut says this version would be faster, because we seem to repeat less work (though I haven't done benchmarking, so who knows!)
 
 ## [Product of Array Except Self](https://leetcode.com/problems/product-of-array-except-self/)
 
@@ -230,3 +233,5 @@ I hope you found these solutions interesting, or if you see a mistake or an impr
 [^1]: It shouldn't be too surprising that `unfoldr` is useful here, given that `zipWith` and `sum`, which we used in the complementary function, are really just specialized versions of `foldr`.
 
 [^2]: I'm using the [LambdaCase](https://typeclasses.com/ghc/lambda-case) language extension here.
+
+[^3]: Another approach would be to build a histiogram of the character counts for each string, then compare these for equality. This would be more efficient if you have a fast dictionary implementation, but this strategy does not fit so easily into our final solution, so I'll skip it for now.
