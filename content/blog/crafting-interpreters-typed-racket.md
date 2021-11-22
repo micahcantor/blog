@@ -86,7 +86,7 @@ Since I followed Nystrom and often wrote in an imperative style, it helped to ha
       (loop))))
 ```
 
-Here we define a simple syntax rule that replaces an instance of `(while pred? body ...)` with a 'named let' loop function that calls itself recursively as long as `pred?` is true.
+Here we define a simple syntax rule that replaces an instance of `(while pred? body ...)` with a 'named let' loop function that executes the body statement(s), then calls itself recursively as long as `pred?` is true.
 
 This is helpful, for instance, in our evaluation of Lox's while statements, which is simply:
 
