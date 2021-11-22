@@ -6,9 +6,9 @@ description = "Some thoughts on following Bob Nystrom's book Crafting Interprete
 tags = ["racket", "programming-languages"]
 +++
 
-This fall, I followed Bob Nystrom's excellent book on writing interpreters, [Crafting Interpreters](https://craftinginterpreters.com/), in [Typed Racket](https://docs.racket-lang.org/ts-guide/). The first part of Nystrom's book details how to write a tree-walking interpreter for a small, dynamically typed language called [Lox](https://craftinginterpreters.com/the-lox-language.html), which supports classes and higher-order functions.
+This fall, I followed Bob Nystrom's excellent book on writing interpreters, [Crafting Interpreters](https://craftinginterpreters.com/), in [Typed Racket](https://docs.racket-lang.org/ts-guide/). The first part of Nystrom's book details how to write a tree-walking interpreter for a small, dynamically-typed language called [Lox](https://craftinginterpreters.com/the-lox-language.html), which supports classes and higher-order functions.
 
-I chose not to follow along in Java for two reasons: first, I just don't like programming in Java, and second, I thought I'd get more out of it if I forced myself to think through the translation of each line of code. So instead, I chose to use Typed Racket, which is the gradually typed sister language to [Racket](https://racket-lang.org/). Initially, I started with just plain Racket, but especially since I was translating Nystrom's code, I kept running into runtime type errors, so I decided to give Typed Racket a try instead. I already had experience with most of Typed Racket's main features, namely algebraic data types and parametric polymorphism, from my experience with Haskell, so the jump was not too big.
+I chose not to follow along in Java for two reasons: first, I just don't like programming in Java, and second, I thought I'd get more out of the book if I forced myself to think through the translation of each line of code. So instead, I chose to use Typed Racket, which is the gradually-typed sister language to [Racket](https://racket-lang.org/). Initially, I started with just plain Racket, but especially since I was translating Nystrom's code, I kept running into runtime type errors, so I decided to give Typed Racket a try instead. I already had experience with most of Typed Racket's main features, namely algebraic data types and parametric polymorphism, from my experience with Haskell, so the jump was not too big.
 
 Despite this, my main focus with this interpreter was not to make full use of Racket's language-oriented tools like macros, since I wanted to focus at first at understanding how to write an interpreter with a more standard approach. Still, in this post, I'd like to go over some of the interesting parts about the design of my interpreter and the notable differences from Nystrom's version.
 
@@ -45,7 +45,7 @@ My Racket version also needs much less code to define each AST node type, as eac
 (struct binary ([left : Expr] [operator : Token] [right : Expr]))
 ```
 
-Therefore, we have no need for [the metaprogramming Nystrom applies](https://craftinginterpreters.com/representing-code.html#metaprogramming-the-trees) to automatically generate the class files for each verbose AST node. 
+Therefore, we have no need for [the metaprogramming that Nystrom applies](https://craftinginterpreters.com/representing-code.html#metaprogramming-the-trees) to automatically generate the class files for each verbose AST node. 
 
 ## Implementing Callable
 
@@ -116,7 +116,7 @@ Translating directly from Nystrom's Java, originally the code to resolve a block
   (end-scope! r))
 ```
 
-Where `begin-scope!` and `end-scope!` are helper functions that push and pop off the scope stack respectively. This isn't bad, but since we reuse this pattern in a few other places, we can make it a bit cleaner by introducing a macro, `with-scope`:
+We push on a scope with `begin-scope!`, resolve all the statements in the block, then pop off the scope with `end-scope!`. This isn't bad, but since we reuse this pattern in a few other places, we can make it a bit cleaner by introducing a macro, `with-scope`:
 
 ```racket
 (define-syntax-rule (with-scope r body ...)
@@ -148,6 +148,6 @@ As of now, according to [this list](https://github.com/munificent/craftinginterp
 
 ### Notes
 
-[^1]: I stole this idea from [this implementation of Lox in Scheme](https://github.com/harryposner/schlox). If you found this post interesting, you may find their code to be as well.
+[^1]: I stole this idea from [this implementation of Lox in Chicken Scheme](https://github.com/harryposner/schlox). If you found this post interesting, you may find their code to be as well.
 
 
