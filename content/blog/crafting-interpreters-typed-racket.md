@@ -1,6 +1,6 @@
 +++
 title = "Crafting Interpreters in Typed Racket"
-date = 2021-11-21
+date = 2021-11-22
 description = "Some thoughts on following Bob Nystrom's book Crafting Interpreters in Typed Racket."
 [taxonomies]
 tags = ["racket", "programming-languages"]
