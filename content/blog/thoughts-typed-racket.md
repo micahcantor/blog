@@ -18,7 +18,7 @@ Typed Racket builds on the Racket platform through the [#lang feature](https://b
 
 ### Migration and Interoperability
 
-With that in mind, converting from Racket to Typed Racket is not very difficult. Essentially all you need to do is change the `#lang` line to `typed/racket` and then add type annotations to function signatures, struct defintions, and a few other places like mutable values.
+With that in mind, converting from Racket to Typed Racket is not very difficult. Essentially all you need to do is change the `#lang` line to `typed/racket` and then add type annotations to function signatures, struct definitions, and a few other places like mutable values.
 
 The story for typed-untyped interoperability is also good. TR comes built-in with typed versions of most (all?) of the standard library. Additionally, any untyped code can be imported with the `require/typed` form, where you essentially just need to add type signatures to the data types and functions you import.
 
@@ -42,7 +42,7 @@ Here, we annotate `str-or-list` has being a union type of either a `String` or `
 
 This ability to distinguish between types at runtime, yet still rely on type-checking at compile time is really powerful, and allows TR code to be quite dynamic yet still type-safe.
 
-Built on top of this occurence typing, type inference for TR is usually good, meaning that type annotations outside function signatures are needed only for mutable values (whose type could change), or some higher-order polymorphic functions.
+Built on top of this occurrence typing, type inference for TR is usually good, meaning that type annotations outside function signatures are needed only for mutable values (whose type could change), or some higher-order polymorphic functions.
 
 ## The Bad
 
@@ -91,7 +91,7 @@ A solution to this and similar issues would be to define the optional type diffe
 
 This creates a union type `Opt` which is either an empty value `None`, or a generic type wrapped in the type constructor `Some`. By using `Opt` to specify empty values, we can avoid the bug described above by, say, returning `None` as the default value passed to `hash-ref`.
 
-The problem I have with TR, is that the confusingly named `Option`, the one where `#f` is the empty value, is the type provided in the standard library. This other `Opt` type is given as a a prominent example of how to write polymorphic data types in the [Typed Racket guide](https://docs.racket-lang.org/ts-guide/types.html#%28part._.Polymorphic_.Data_.Structures%29), but its use (or at least documentation about the unsafety of `Option`) is not codified in the language. 
+The problem I have with TR, is that the confusingly named `Option`, the one where `#f` is the empty value, is the type provided in the standard library. This other `Opt` type is given as a prominent example of how to write polymorphic data types in the [Typed Racket guide](https://docs.racket-lang.org/ts-guide/types.html#%28part._.Polymorphic_.Data_.Structures%29), but its use (or at least documentation about the unsafety of `Option`) is not codified in the language. 
 
 I think that TR should clarify this confusing relationship between `Option` and a user-defined type like s`Opt` more clearly and give some guidance on when to choose one or the other.
 
@@ -126,7 +126,7 @@ I don't really care which is used but the documentation should stick to one styl
 
 There's a similar issue in whether to use the procedure type constructor `->` as infix or prefix. In most parts of the documentation, the prefix notation is used, so the type of a procedure from `String` to `Number` would be `(-> String Number)`. In [other parts](https://docs.racket-lang.org/ts-guide/occurrence-typing.html#%28part._let-aliasing%29) however, the same type is written using infix notation as `(String -> Number)`. The fact that both of these create the same type and are used interchangeably is a bit confusing, given that everything else in Racket is generally written with prefix.
 
-Lastly, it would be nice if the guide talked more about how to define one's own type predicates in the [Occurence Typing](https://docs.racket-lang.org/ts-guide/occurrence-typing.html) section. For example, at one point, I wanted to write a predicate to assert that a list contained only strings. I couldn't find an example anywhere about how to actually do this, but helpfully found out from [this StackOverflow answer](https://stackoverflow.com/questions/69694263/how-to-assert-listof-string-predicate-in-typed-racket).
+Lastly, it would be nice if the guide talked more about how to define one's own type predicates in the [Occurrence Typing](https://docs.racket-lang.org/ts-guide/occurrence-typing.html) section. For example, at one point, I wanted to write a predicate to assert that a list contained only strings. I couldn't find an example anywhere about how to actually do this, but helpfully found out from [this StackOverflow answer](https://stackoverflow.com/questions/69694263/how-to-assert-listof-string-predicate-in-typed-racket).
 
 This assertion can be defined as such:
 
@@ -136,7 +136,7 @@ This assertion can be defined as such:
   (andmap string? l))
 ```
 
-I think a simple example of somthing like this ought to be found somewhere in the documentation, given that it wasn't entirely clear that I could define and compose my own predicates in this way.
+I think a simple example of something like this ought to be found somewhere in the documentation, given that it wasn't entirely clear that I could define and compose my own predicates in this way.
 
 ### Editor Integration
 

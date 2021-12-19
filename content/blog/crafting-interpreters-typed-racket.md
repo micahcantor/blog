@@ -49,7 +49,7 @@ Therefore, we have no need for [the metaprogramming that Nystrom applies](https:
 
 ## Implementing Callable
 
-Nystrom creates an interface, `Callable`, to abstract over a few different classes that all implement a `call` function in slightly different ways: functions, native functions, and classes. In our functional paradigm though, we don't have a direct corrolary to OOP interfaces.
+Nystrom creates an interface, `Callable`, to abstract over a few different classes that all implement a `call` function in slightly different ways: functions, native functions, and classes. In our functional paradigm though, we don't have a direct corollary to OOP interfaces.
 
 Instead, we will reuse the same pattern from the prior section by defining `Callable` as a union type of the different options, `Function`, `NativeFunction` and `Class`:
 

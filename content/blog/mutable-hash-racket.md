@@ -8,11 +8,11 @@ tags = ["racket", "data-structures"]
 katex = true
 +++
 
-[Hash Tables](https://en.wikipedia.org/wiki/Hash_table) are a fundamental data structure that most programmers will be familiar with. In this post, I will outline a simple implentation of hash tables in Racket, which will help us learn more about how they work, and how we can model these kinds of data structures in Racket. For this post, we will stick to *mutable* hash tables, though Racket does come with support for *immutable* ones, which would be tricker to implement.
+[Hash Tables](https://en.wikipedia.org/wiki/Hash_table) are a fundamental data structure that most programmers will be familiar with. In this post, I will outline a simple implementation of hash tables in Racket, which will help us learn more about how they work, and how we can model these kinds of data structures in Racket. For this post, we will stick to *mutable* hash tables, though Racket does come with support for *immutable* ones, which would be tricker to implement.
 
 ## Hash Table Basics
 
-Hash tables are a powerful data stucture since they allow us to index values by arbitrary keys while retaining (on *average*) $\text O(1)$ performance for lookups, insertion and deletion. They are able to acheive this by essentially acting as a layer on top of an array (in Racket, *vectors*). Vectors and hashes are similar, except vectors index their elements with integers, while hashes use keys.
+Hash tables are a powerful data structure since they allow us to index values by arbitrary keys while retaining (on *average*) $\text O(1)$ performance for lookups, insertion and deletion. They are able to achieve this by essentially acting as a layer on top of an array (in Racket, *vectors*). Vectors and hashes are similar, except vectors index their elements with integers, while hashes use keys.
 
 To implement a hash table, then, our main goal is to create some *hash function* that converts our keys into integers that we can use to index a vector. When we *set* a value, we'll use the function to generate the insertion index, and when we *get* an item, we'll use the same function to find the index of the value to retrieve.
 
@@ -187,7 +187,7 @@ We use `set-hash-table!` here since we want to completely swap our old table for
 
 We're not done though, since by doing this we've discarded the values in our old table. Instead we will need to *rehash* these values into the new table. This rehashing step is necessary since our hash function relies on the size of our table, so we can't reuse indices from the old table as they would not match up to their corresponding keys.
 
-To rehash our values, we iterate over each sublist in the old table, and then over each key-value pair in those sublists. At each step, we want to calculate the new index using the hash function and insert into the new table.[^6] This can be acheived neatly with Racket's `for*` construct for nested loops:
+To rehash our values, we iterate over each sublist in the old table, and then over each key-value pair in those sublists. At each step, we want to calculate the new index using the hash function and insert into the new table.[^6] This can be achieved neatly with Racket's `for*` construct for nested loops:
 
 ```racket
 ; Create a new table that is at least twice as large as the original. 
@@ -208,7 +208,7 @@ To rehash our values, we iterate over each sublist in the old table, and then ov
 
 The `#:unless` guard lets us skip over null elements in the old table. Note that this resizing step, while helpful, is relatively expensive, as it requires a sequential walk through the original table. Additionally, `next-prime` can be expensive for large inputs. 
 
-With our `hash-resize!` function written, our work is now complete! Now if we add to a table past 80% capactiy, it will automatically size up. If we set our inital size in the definition of `make-hash` to 3, then:
+With our `hash-resize!` function written, our work is now complete! Now if we add to a table past 80% capacity, it will automatically size up. If we set our initial size in the definition of `make-hash` to 3, then:
 
 ```racket
 > (define my-table (make-hash))

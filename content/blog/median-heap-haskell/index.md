@@ -61,7 +61,7 @@ insert x heap@(MedianHeap lesser greater) =
         else balance $ MedianHeap (Heap.insert x lesser) greater
 ```
 
-Note that I've qualifed some imports from the Data.Heap package here so they don't conflict with our functions or those from Prelude. To complete this function, we just need to write the `balance` function which we discussed in theory earlier.
+Note that I've qualified some imports from the Data.Heap package here so they don't conflict with our functions or those from Prelude. To complete this function, we just need to write the `balance` function which we discussed in theory earlier.
 
 Our `balance` function will compare the sizes of the two heaps. If they are equal, our heap is already balanced, so we return without modification. Otherwise, we deconstruct the larger heap into its head and tail -- inserting the head into the other side, and replacing the heap with its tail. This performs the "bumping over" operation illustrated above. 
 

@@ -6,7 +6,7 @@ description = "A case study in switching from manually managing setInterval to t
 tags = ["react"]
 +++
 
-In Dan Abramov's blog post ["Making setInterval Declarative with React Hooks"](https://overreacted.io/making-setinterval-declarative-with-react-hooks/), he writes about a custom React hook to wrap the native Javascript function, setInterval. The first time I read the article, I thought it was interesting, but I was not convinced by the power of custom hooks until I got the chance to use it in action. That opportunity came when I was designing a music progress bar component. The switch from using `setInterval` to `useInterval` resulted in a dramatic reduction in code size and a cleaner design.
+In Dan Abramov's blog post ["Making setInterval Declarative with React Hooks"](https://overreacted.io/making-setinterval-declarative-with-react-hooks/), he writes about a custom React hook to wrap the native JavaScript function, setInterval. The first time I read the article, I thought it was interesting, but I was not convinced by the power of custom hooks until I got the chance to use it in action. That opportunity came when I was designing a music progress bar component. The switch from using `setInterval` to `useInterval` resulted in a dramatic reduction in code size and a cleaner design.
 
 The design of `useInterval` is fairly simple. It looks similar to `useEffect`, where the first parameter is a callback function. It differs though in the second parameter, which is a number in milliseconds:
 
@@ -80,7 +80,7 @@ export const ProgressBar = ({ elapsed, songs, runtime, isPaused, deviceID, room,
   );
 ```
 
-As you can see, even with some of the other logic removed, this component was a bit of a beheamoth. Most of the ugliness stems from the three separate `useEffect` calls that were responsible for updating the progress bar. 
+As you can see, even with some of the other logic removed, this component was a bit of a behemoth. Most of the ugliness stems from the three separate `useEffect` calls that were responsible for updating the progress bar. 
 
 The first function intended to carefully manage the state of the timers when the pause state changed or the song ended. This probably would have been cleaner if it were split up into multiple reducers managing the state of the progress bar and the pause/play button, but that's not the design I had at the time. Instead, the function would trigger when `isPaused` changed. Then, if the song were playing (`!isPaused`) and the timer was not already active, it would create a new interval timer that updated every 50 ms. If the song was paused and the timer was already active, it would stop the clock. It would do the same when the song ended (`elapsed >= runtimeMS`).
 

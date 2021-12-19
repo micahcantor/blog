@@ -8,9 +8,9 @@ tags = ["haskell", "leetcode"]
 katex = true
 +++
 
-[Leetcode](https://leetcode.com) is a popular site which hosts a database of programming questions and crowd-sourced solutions in different programming lanuages. Recently, I decided to try my hand at solving some of these questions using Haskell, both to improve my skills in the language, and to prepare for future interviews, where I may or may not use Haskell. Unfortunately, Leetcode does not support using Haskell to submit answers, but I thought it would be fun nonetheless.
+[Leetcode](https://leetcode.com) is a popular site which hosts a database of programming questions and crowd-sourced solutions in different programming languages. Recently, I decided to try my hand at solving some of these questions using Haskell, both to improve my skills in the language, and to prepare for future interviews, where I may or may not use Haskell. Unfortunately, Leetcode does not support using Haskell to submit answers, but I thought it would be fun nonetheless.
 
-One of the difficulties with solving Leetcode questions with a functional langauge like Haskell is that most, if not all, solutions and explanations for a given question are presented in an imperative or object-oriented style. Despite this, I think that thinking functionally can often lead to incredibly elegant solutions to these problems, so I'd like to share some of these interesting ones here. I've also tried to ensure that the solutions are algorithmically efficent -- no brute force answers allowed. Let's jump in.
+One of the difficulties with solving Leetcode questions with a functional language like Haskell is that most, if not all, solutions and explanations for a given question are presented in an imperative or object-oriented style. Despite this, I think that thinking functionally can often lead to incredibly elegant solutions to these problems, so I'd like to share some of these interesting ones here. I've also tried to ensure that the solutions are algorithmically efficient -- no brute force answers allowed. Let's jump in.
 
 ## [Add Two Numbers](https://leetcode.com/problems/add-two-numbers/)
 
@@ -45,7 +45,7 @@ Recall that `unfoldr` is a higher-order function with the type
 unfoldr :: (b -> Maybe (a, b)) -> b -> [a]
 ```
 
-Essentially, it takes a starting value `b`, and a function that returns `Nothing` in its base case (when nothing more should be added to the list), and `Just (a, b)` in the recursive case. The first part of the tuple, `a` represents what should be added to the list, while the second part, `b` reprents the *remainder* of the value. 
+Essentially, it takes a starting value `b`, and a function that returns `Nothing` in its base case (when nothing more should be added to the list), and `Just (a, b)` in the recursive case. The first part of the tuple, `a` represents what should be added to the list, while the second part, `b` represents the *remainder* of the value. 
 
 I admit, that sounds complicated, but an example should help. For `fromDecimal n`, the base case is when $n$ is $0$. Here, we add nothing to our result list. In the recursive case, we add $n \mod 10$ to the list, since this gives us the leading digit of $n$, and continue with $\lfloor n / 10 \rfloor$ as our remainder.
 
@@ -234,4 +234,4 @@ I hope you found these solutions interesting, but if you see a mistake or an imp
 
 [^2]: I'm using the [LambdaCase](https://typeclasses.com/ghc/lambda-case) language extension here.
 
-[^3]: Another approach would be to build a histiogram of the character counts for each string, then compare these for equality. This would be more efficient if you have a fast dictionary implementation, but this strategy does not fit so easily into our final solution, so I'll skip it for now.
+[^3]: Another approach would be to build a histogram of the character counts for each string, then compare these for equality. This would be more efficient if you have a fast dictionary implementation, but this strategy does not fit so easily into our final solution, so I'll skip it for now.

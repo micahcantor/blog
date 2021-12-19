@@ -40,7 +40,7 @@ The next request came from "serg scream" on January 27, 2021. This time, instead
 >
 > ABOUT US
 >
-> We are a young modern team of specialists engaged in developing products for monetization of browser extensions. Our new product called uSearch is a groundbreaking promotion system for sales on the sites. The key principle of operation is that in search engines partners' extention will display the advertisers' icon left to the page name thus attracting attention of users.
+> We are a young modern team of specialists engaged in developing products for monetization of browser extensions. Our new product called uSearch is a groundbreaking promotion system for sales on the sites. The key principle of operation is that in search engines partners' extention [sic] will display the advertisers' icon left to the page name thus attracting attention of users.
 >
 > OUR ADVANTAGES
 >
