@@ -1,6 +1,6 @@
 +++
 title = "Search Bar for Classroom"
-description = "A Chrome extension that adds a search bar to Google Classroom. Currently has over 2000 users."
+description = "A Chrome extension that adds a search bar to Google Classroom. Currently has over 5000 users."
 [taxonomies]
 tags = ["chrome extension", "nodejs"]
 [extra]
