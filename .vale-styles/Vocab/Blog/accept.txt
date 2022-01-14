@@ -12,3 +12,4 @@ booleans
 unsafety
 Calva
 Paredit
+Haskeller
