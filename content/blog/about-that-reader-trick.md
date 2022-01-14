@@ -6,7 +6,7 @@ description = "Reader can be used to track local bindings, but not all bindings.
 tags = ["haskell", "programming-languages"]
 +++
 
-There is an interesting post on [Solomon's Blog](https://blog.cofree.coffee/2021-08-13-that-one-cool-reader-trick/) about how the [Reader](https://hackage.haskell.org/package/mtl-2.2.2/docs/Control-Monad-Reader.html) monad in Haskell can be used to model variable bindings in an interpreter.
+There is an interesting post on [Solomon's Blog](https://blog.cofree.coffee/2021-08-13-that-one-cool-reader-trick/) about how the [Reader](https://hackage.haskell.org/package/mtl-2.2.2/docs/Control-Monad-Reader.html) monad in Haskell can be used to model variable bindings in an interpreter, which he calls "that one cool reader trick."
 
 For those unfamiliar with `Reader`, it represents a computation which can reference some environment and execute sub-computations in a modified environment. Concretely, this is often used in Haskell apps to reference some kind of initial configuration or context that's needed throughout. It would often be a pain to manually pass this environment to every function that requires it, so instead, we wrap the computation in a `Reader` monad and then retrieve the environment when necessary with the `ask` function.
 
