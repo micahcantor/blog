@@ -106,12 +106,12 @@ This should evaluate to `4`, but a naive `Reader` implementation could give `3` 
 
 ## What to do instead
 
-If you want to interpret a language with global definitions and mutation, then, it's best not to use `Reader`. Instead, we can manage a stack of environments, either explicitly or with the `State` monad. With an environment stack,
+If you want to interpret a language with global definitions and mutation, then, it's best not to use `Reader`. Instead, we can manage a stack of environments, either explicitly or with the `State` monad. With an environment stack:
 
 - To create a local binding, we push a new environment onto the stack, then evaluate the body in this top environment. 
 - To lookup a binding, we traverse the stack searching for the first appearance of the name.
 - To create a definition, we just modify the top environment on the stack, and continue with evaluation of the rest of the AST.
-- To mutate a variable, we traverse the stack searching for the appearance of the name, then return a new stack with the first instance changed.
+- To mutate a variable, we will likely need to change our `Bindings` definition to wrap values in our environment with a mutable reference like `IORef` or `STRef`. Otherwise, mutation works like a lookup where we change the value once it's found.
 
 Concretely, one way to do this would be to define our `Environment` type as a record containing the bindings, and possibly, a parent environment:
 
@@ -122,7 +122,7 @@ data Environment = Environment {
 }
 ```
 
-With this model, by keeping track of the current environment, we can push onto the stack by creating a new environment where the current environment is the parent, and we pop the stack by setting the current environment to the parent. With this, we can add definitions and mutation to our language without dealing with the difficulty of peeking ahead in the tree. Also note that this approach is similar to the implementation of environments in [Nystrom's Crafting Interpreters](https://craftinginterpreters.com/contents.html).
+With this model, by keeping track of the current environment, we can push onto the stack by creating a new environment where the current environment is the parent, and we pop the stack by setting the current environment to the parent. With this, we can add definitions to our language without dealing with the difficulty of peeking ahead in the tree. Also note that this approach is similar to the implementation of environments in [Nystrom's Crafting Interpreters](https://craftinginterpreters.com/contents.html).
 
 ## Conclusion
 
