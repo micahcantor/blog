@@ -1,6 +1,6 @@
 +++
 title = "Why learn Racket? A student's perspective"
-date = 2022-01-25
+date = 2022-02-18
 description = "A few thoughts on why I think you should learn Racket."
 [taxonomies]
 tags = ["racket", "programming-languages"]
