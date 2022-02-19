@@ -1,7 +1,7 @@
 +++
 title = "About that Reader trick"
 date = 2022-01-14
-description = "Reader can be used to track local bindings, but not all bindings."
+description = "Reader can be used to track local bindings, but tracking all bindings can be more difficult."
 [taxonomies]
 tags = ["haskell", "programming-languages"]
 +++
