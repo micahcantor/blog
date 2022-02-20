@@ -116,7 +116,7 @@ Recursion isn't a silver-bullet, but it's a fundamental tool that's worth unders
 
 Even if all this waxing about recursion is true, one may still wonder why to choose Racket when recursion is available in every other programming language as well. The answer is that Racket, like most other functional languages, is designed to make recursive design more ergonomic and natural. 
 
-First, every Racket procedure implicit returns the final expression, so there is no possibility of writing a foot-gun recursive procedure that doesn't return a value. Additionally, core forms like are designed to discourage imperative programming. For example, an `if` expression must include truthy and false branches, so it's more difficult for one to forget to include a base case.
+First, every Racket procedure implicitly returns the final expression, so there is no possibility of writing a foot-gun recursive procedure that doesn't return a value. Additionally, core forms in the language are designed to discourage imperative programming. For example, an `if` expression must include truthy and false branches, so it's more difficult for one to forget to include a base case.
 
 Perhaps most important, however, is the core placement of the list data structure. Lists are an inherently recursive data structure, as they're either `null` or `cons` of some value and another list. Recursive design over `cons` lists is natural, so their central placement in Racket makes using recursion a natural choice. 
 
