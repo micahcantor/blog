@@ -1,5 +1,5 @@
 +++
-title = "Typed Racket: the good and the bad"
+title = "The good and the bad of Typed Racket"
 date = 2021-12-19
 description = "Some thoughts on Typed Racket, gathered from my experience using it to implement a Lox interpreter."
 [taxonomies]
