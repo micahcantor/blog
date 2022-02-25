@@ -6,7 +6,7 @@ description = "A few thoughts on why I think you should learn Racket."
 tags = ["racket", "programming-languages"]
 +++
 
-I'm a student at Grinnell College, a small liberal arts school in Iowa. Here, the computer science department uses Racket in its intro course, which focuses on functional programming and is aimed at all students (majors, non-majors, and those with and without prior programming experience.) After taking the course myself last fall, this semester I am working as a student mentor for the course, where I help students during in-class labs and hold weekly review sessions.
+I'm a student at Grinnell College, a small liberal arts school in Iowa. Here, the computer science department uses Racket in its intro course, which focuses on functional programming and is aimed at all students (majors, non-majors, and those with and without prior programming experience.) After taking the course myself last year, this semester I am working as a student mentor for the course, where I help students during in-class labs and hold weekly review sessions.
 
 Grinnell is far from alone in its choice to use Racket or Scheme in its introductory CS course. Perhaps the most well known Scheme course is MIT's 6.001, which began in 1980 and taught computer science using the book [Structure and Interpretation of Computer Programs](https://mitpress.mit.edu/sites/default/files/sicp/full-text/book/book.html). MIT replaced their Scheme curriculum with a Python course in 2008, but other universities like Brown, Northeastern, and Indiana maintain Scheme or Racket in their first courses. Still, perhaps following MIT's lead, the use of Racket for an intro course is still relatively rare among CS undergraduate programs.
 
