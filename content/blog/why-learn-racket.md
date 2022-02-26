@@ -6,6 +6,8 @@ description = "A few thoughts on why I think you should learn Racket."
 tags = ["racket", "programming-languages"]
 +++
 
+*Updated on Friday, February 25th.*
+
 I'm a student at Grinnell College, a small liberal arts school in Iowa. Here, the computer science department uses Racket in its intro course, which focuses on functional programming and is aimed at all students (majors, non-majors, and those with and without prior programming experience.) After taking the course myself last year, this semester I am working as a student mentor for the course, where I help students during in-class labs and hold weekly review sessions.
 
 Grinnell is far from alone in its choice to use Racket or Scheme in its introductory CS course. Perhaps the most well known Scheme course is MIT's 6.001, which began in 1980 and taught computer science using the book [Structure and Interpretation of Computer Programs](https://mitpress.mit.edu/sites/default/files/sicp/full-text/book/book.html). MIT replaced their Scheme curriculum with a Python course in 2008, but other universities like Brown, Northeastern, and Indiana maintain Scheme or Racket in their first courses. Still, perhaps following MIT's lead, the use of Racket for an intro course is still relatively rare among CS undergraduate programs.
@@ -18,7 +20,7 @@ I think Racket is a great first language to learn, but in this post, I'd like to
 
 Racket, and Lisps more generally, are often touted as languages with the simplest syntax. In Racket, every form is an expression, which is either an atomic value like a string or number, or a list beginning with a procedure or a special form. This syntax stands in contrast to a language like Python, which has strict rules for which forms may be used as expressions and which must be statements.
 
-I think this advantage is sometimes overstated by Lisp enthusiasts. Although Python's syntax may not be as simple, it does have its own kind of elegance once a user learns its syntactic rules. Where Lisp-style syntax does have an advantage, however, is in the power of its mental evaluation model. When evaluating Racket code, we always evaluate the innermost parentheses first, replacing procedure calls with their appropriate body, except for a few special forms.
+I think this advantage is sometimes overstated by Lisp enthusiasts. Although Python's syntax may not be as simple, it does have its own kind of elegance once a user learns its syntactic rules. Where Lisp-style syntax does have an advantage, however, is in the power of its mental evaluation model. When evaluating Racket code, we always evaluate the innermost parentheses first, replacing procedure calls with their appropriate body, except for a few special forms.[^1]
 
 For example, take the following Racket expression to square every number in a list
 
@@ -67,7 +69,7 @@ Even if you are an experienced Python or Java programmer that knows exactly how 
 
 ## Less is more
 
-Learning Racket often involves working with a more limited set of tools than the ones offered in other languages. Loops and mutation, for instance, which are core features in other languages, are usually off-limits to beginners in Racket 
+Learning Racket often involves working with a more limited set of tools than the ones offered in other languages. Loops and mutation, for instance, which are core features in other languages, are usually off-limits to beginners in Racket.[^2] 
 
 While there are genuine aesthetic advantages to a language built with a small core, namely in how it can be concisely defined and implemented, I think it's important not to overstate these in comparison to the material advantages of a small language as well. 
 
@@ -153,3 +155,9 @@ Not only that, but [React](https://reactjs.org/), and its functional approach to
 ## Final Thoughts
 
 Racket is above all, an excellent programming language, and in my view, a valuable learning tool for novice and experienced programmers alike. That's why it frustrates me when my peers complain about the language for what I see as irrational reasons. Not everyone needs to love or prefer functional programming in Racket, but I hope this post at least helps some of those people appreciate its value.
+
+## Notes
+
+[^1]: As others have pointed out, this only applies for the small core of the language, not for macros or DSLs. But beginners generally stick with that small core.
+
+[^2]: Again, this applies to the Scheme-like core of Racket, not for the language at large, which incorporates a lot more complexity. 
