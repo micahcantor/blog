@@ -6,7 +6,7 @@ description = "A toy compiler for a subset of JavaScript to ARM assembly, using 
 tags = ["haskell", "programming-languages"]
 +++
 
-I recently got a copy of the book [*Compiling to Assembly from Scratch*](http://keleshev.com/compiling-to-assembly-from-scratch/resources) by Vladamir Keleshev, which details how to write a compiler for a subset of JavaScript to 32-bit ARM assembly code. The choice to use ARM assembly is mainly for its simplicity in comparison to x86. 
+I recently got a copy of the book [*Compiling to Assembly from Scratch*](https://keleshev.com/compiling-to-assembly-from-scratch/) by Vladamir Keleshev, which details how to write a compiler for a subset of JavaScript to 32-bit ARM assembly code. The choice to use ARM assembly is mainly for its simplicity in comparison to x86. 
 
 Keleshev elects to use TypeScript to write the compiler, which, as he explains in the preface, is largely a compromise for its familiar C-like syntax while still providing many functional programming features desireable for writing a compiler. However, I chose to write my version of the compiler in Haskell as it's my favorite language, and the focus on functional programming from Keleshev makes it a natural choice for the translation.
 
