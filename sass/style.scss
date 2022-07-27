@@ -171,9 +171,10 @@ main.article-content {
 
   p, li {
     code {
-      padding: 3px;
-      border-radius: 5px;
+      padding: 2px 3px 2px 3px;
+      border-radius: 3px;
       line-height: 0;
+      font-weight: 500;
     }
   }
 
