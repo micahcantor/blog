@@ -6,7 +6,7 @@ description = "The dual interpretations of data and computation, and a compariso
 tags = ["haskell", "clojure", "functional-programming"]
 +++
 
-There's a common joke that the rite of passage for every Haskell programmer is to write a "monad tutorial" blog post once they think they finally understand with how they work. There are enough of those posts out there, though, so I don't intend for this to be yet another monad tutorial. However, I do have some thoughts on *why* people seem to struggle so much with monads, and as a result, why so many of those tutorials exist.
+There's a common joke that the rite of passage for every Haskell programmer is to write a "monad tutorial" blog post once they think they finally understand with how they work. There are enough of those posts out there, though, so I don't intend for this to be yet another monad tutorial. However, based on my learning experience, I do have some thoughts on *why* people seem to struggle so much with monads, and as a result, why so many of those tutorials exist.
 
 At a high level, the intuition for monads are that they are an abstraction of sequencing in programming. Any computation that involves "do this, and then do that using the previous result" can be considered monadic. 
 
@@ -36,11 +36,11 @@ That is, the type `State s a` is a function that takes an initial state as input
 
 In general, the technique of treating computations as data types is pervasive in Haskell code. It allows one to scope and isolate side-effecting code like `State` or `IO` from pure code and to compose multiple effectful computations together.
 
-So what *is* a monad? Maybe this is part of where the confusion with them lies. All monads represent some computation, i.e. a verb or action, that may carry with it some side effects. This is only sometimes unclear since we work with these actions as if they were ordinary data types.
+So what *is* a monad? All monads represent some computation, i.e. a verb or action, that can be sequentially composed together and may carry with it some side effects. This is sometimes unclear, however, since we often work with these actions as if they were ordinary data types.
 
 ## Data as Computation
 
-So what about those "data monads" like lists and `Maybe`? They can be interpreted as computations too, and their `Monad` instances allow us to tap into a rich set of generic tools work with them as such.
+So what about those "data monads" like lists and `Maybe`? They can be interpreted as computations too, and their `Monad` instances allow us to tap into a rich set of generic tools to work with them as such.
 
 I think an example will help explain this idea better, so let's look at representing data as computation with the `Maybe` monad. As I said earlier, we traditionally think about `Maybe a` as a generic data type that represents either the presence of that data (with `Just a`), or the absence of that data (with `Nothing`).
 
@@ -94,7 +94,7 @@ The macro can be used to conditionally execute some imperative code, for instanc
   (launch-rocket))
 ```
 
-which does nothing if `engine-ready` is `false`, and otherwise executes the body.
+which does nothing if `engines-ready` is `false`, and otherwise executes the body.
 
 An extremely similar construct is provided in Haskell, yet it is defined completely differently: not as a macro but as a function over a `Monad`[^1]:
 
