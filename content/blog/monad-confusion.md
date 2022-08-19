@@ -1,7 +1,7 @@
 +++
-title = "Monad Confusion and the Blurry Line Between Data and Computation"
+title = "Monad confusion and the blurry line between data and computation"
 date = 2022-07-27
-description = "The dual interpretations of data and computation, and a comparison of Clojure macros to Haskell monads."
+description = "On the dual interpretations of data and computation, and a comparison of Clojure macros to Haskell monads."
 [taxonomies]
 tags = ["haskell", "clojure", "functional-programming"]
 +++

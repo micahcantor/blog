@@ -1,5 +1,5 @@
 +++
-title = "Compiling a Subset of JavaScript to ARM Assembly in Haskell"
+title = "Compiling a subset of JavaScript to ARM assembly in Haskell"
 date = 2022-05-29
 description = "A toy compiler for a subset of JavaScript to ARM assembly, using Haskell."
 [taxonomies]

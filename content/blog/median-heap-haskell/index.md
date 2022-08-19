@@ -1,5 +1,5 @@
 +++
-title = "Median Heaps in Haskell"
+title = "Median heaps in Haskell"
 date = 2021-06-12
 description = "An implementation and discussion of a median heap data structure in Haskell."
 [taxonomies]

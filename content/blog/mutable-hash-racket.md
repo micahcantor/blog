@@ -1,5 +1,5 @@
 +++
-title = "Implementing Simple Hash Tables in Racket"
+title = "Implementing simple hash tables in Racket"
 date = 2021-01-01
 description = "A simple implementation of mutable hash tables to learn how they work behind the scenes."
 [taxonomies]
