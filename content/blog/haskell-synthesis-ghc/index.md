@@ -132,7 +132,6 @@ getUnwrappingFunctionExpr functionName stackTyCon typedExprs = do
     [] -> throwError (NoUnwrapperFound (show (Outputable.ppr stackTyCon)))
     (unwrapper : _) -> pure unwrapper
   where
-    -- Is a TyCon the first argument of a given type?
     isUnwrapper :: LHsExpr GhcPs -> Type -> TyCon -> Bool
     isUnwrapper expr ty tyCon =
       let exprStr = show (Outputable.ppr expr)
