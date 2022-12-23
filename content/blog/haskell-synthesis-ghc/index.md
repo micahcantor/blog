@@ -35,7 +35,9 @@ And with a bit of work, this kind of straightforward synthesis is possible! For 
 
 Here, the program generates the correct unwrapping function, leaving a hole where `initialConfig` must go, which we then fill in ourselves. 
 
-The synthesis we acheive is more of a proof-of-concept due to its limited scope, but I think the demo showcases the productivity potential of this kind of tool. Haskell's focus on purity and strong typing means certain function definitions like this one only have one correct definition, so why don't we let the computer autocomplete that definition for us?
+If all of this seems like a lot of work for completing an oddly specific kind of function that we could easily write ourselves, then you'd mostly be right. The goal of this project was not to build an instantly useful tool, but rather to gain practical familiarity with how the GHC works. By tackling a small and achievable problem, we could learn how a more general synthesis tool could be built in the future.
+
+So, the synthesis we acheive is essentially of a proof-of-concept due to its limited scope, but I think the demo showcases the productivity potential of this kind of tool. Haskell's focus on purity and strong typing means certain function definitions like this one only have one correct definition, so why don't we let the computer autocomplete that definition for us?
 
 ## Under the hood
 
@@ -185,7 +187,7 @@ One issue with this approach is that for simplicity, we set up an entire fresh i
 
 Due to this, integrating with HLS is an obvious next step for this tool, which would also make it available to a much wider userbase. That would require some refactoring of the code that interacts with GHC, but I also don't think the tool is mature or versatile enough yet to warrant integration with HLS. Still, this could serve as inspiration for future work along this line.
 
-Another extension would be to use what we recently learned about using the unifier to generalize the synthesis approach for other domains outside of transformer stacks. One idea we had was taking information about a type error from the compiler and using that to look in scope for functions to fix it. For example, if the compiler reports it expected type `String` and found type `Int`, we could look in scope for a suitable function to fix this (maybe `show` is the only option). 
+Another extension would be to use what we more recently learned about using the unifier to generalize the synthesis approach for other domains outside of transformer stacks. One idea we had was taking information about a type error from the compiler and using that to look in scope for functions to fix it. For example, if the compiler reports it expected type `String` and found type `Int`, we could look in scope for a suitable function to fix this (maybe `show` is the only option). 
 
 There's also work to be done on the UX front: more research and experimentation should be done to determine the best ways for users to interact with the synthesis tools. For example, we want to answer questions such as what to do if there are multiple correct completions or the most ergonomic way for users to invoke the synthesis.
 
@@ -193,7 +195,7 @@ There's also work to be done on the UX front: more research and experimentation 
 
 We are certainly not the first ones to look at program synthesis with GHC and Haskell, and in fact there is already a synthesis tool built into HLS called [Wingman](https://haskellwingman.dev/). Wingman embraces hole-driven design and does some great work to automatically fill holes or case splitting a selected expression.
 
-Wingman is still in beta, and it has room to integrate more recent research into type-driven synthesis to generate a wider variety of Haskell programs. Our goal for this project was to learn more about how Wingman works, and potentially move toward contributing improvements or extensions in the future.
+Wingman is still in beta, and it has room to integrate more recent research into type-driven synthesis to generate a wider variety of Haskell programs. Our goal for this project was to learn more about how Wingman works, and potentially move toward contributing improvements or extensions to it in the future.
 
 Outside of Haskell specifically, there's also the recent rise of synthesis tools backed by large language models such as [GitHub Copilot](https://github.com/features/copilot) and [OpenAI's ChatGPT](https://openai.com/blog/chatgpt/). These language models take a statistical, rather than type-driven approach to synthesis, which makes them both much more widely capable and also more error prone.
 
