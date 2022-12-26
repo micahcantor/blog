@@ -215,6 +215,12 @@ Overall, it seems likely that we are only seeing the beginning of what is possib
 
 This work was completed as part of a [Mentored Advanced Project (MAP)](https://www.grinnell.edu/academics/experience/research/map) at Grinnell College. Thank you to my collaborator Hanfeng Lu, our advisor Peter-Michael Osera, and the College for making this all possible. For those that are interested, all of the code for both the Haskell synthesis program and the VSCode extension [can be found on GitHub here](https://github.com/micahcantor/synthesis-tools).
 
+------------
+
+*I'm looking for a software engineering internship or new grad opportunity in the summer/fall of 2023. If you are hiring, please [reach out!](mailto:micahcantor01@gmail.com)*
+
+-------------
+
 ## Notes
 
 [^1]: If you haven't seen it before, check out [the ghc Hackage page](https://hackage.haskell.org/package/ghc), which links to well over a hundred different submodules. It's a big compiler.
