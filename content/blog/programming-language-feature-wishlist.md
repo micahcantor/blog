@@ -50,11 +50,11 @@ Therefore, constraints allow for a form of dynamic dispatch, similar to interfac
 
 ### Parallel Runtime and Concurrency Primitives
 
-My programming language's runtime should be designed with support for concurrent and parallel programs in mind from the beginning. OCaml recently underwent a years-long overhaul in the language's implementation to add backward-compatible parallelism to the language. Meanwhile others like Python and JavaScript continue to suffer from their language's dependence on their initial single-threaded focus.
+My programming language's runtime should be designed with support for concurrent and parallel programs in mind from the beginning. [OCaml recently underwent a years-long overhaul](https://dl.acm.org/doi/10.1145/3408995) in the language's implementation to add backward-compatible parallelism to the language. Meanwhile others like [Python continue to suffer from their language's dependence](https://wiki.python.org/moin/GlobalInterpreterLock) on their initial single-threaded focus.
 
 My language should also provide some language support for asynchronous or non-blocking programming. The most popular paradigm for this problem right now is some primitive form of lightweight threads or coroutines, as found in Go, Lua and Kotlin. Other languages add syntactic support for labeling asynchronous functions with `async`/`await`, such as in C#, JavaScript and Rust.
 
-Different languages take other approaches to these problems, and I'm not sure what is best. However, my language should decide on some concurrency primitives and syntax from the beginning. If they are added in later, then libraries tend to be split along lines of different concurrency conventions. For instance, in the JS, Rust, and Python communities, new libraries with different APIs needed to be created with the introduction of `async`/`await` causing users to "pick sides" on which libraries to use.
+Different languages take other approaches to these problems, and I'm not sure what's best. However, my language should decide on some concurrency primitives and syntax from the beginning. If they're added in later, then libraries tend to be split along lines of different concurrency conventions. For instance, in the JS, Rust, and Python communities, new libraries with different APIs needed to be created with the introduction of `async`/`await` causing users to "pick sides" on which libraries to use.
 
 ### Minimal C-like Syntax
 
@@ -78,7 +78,7 @@ Importantly, the compiler authors should maintain that any error message that do
 
 Users expect a programming language, even ones that are new or just prototypes, to be easy to install and run. It shouldn't take longer than 5 to 10 minutes to go from the landing page to running "hello world" in my language. My language's command line tools should be fast, reliable, and clear when an installation or build has failed.
 
-Additionally, programming communities have increasingly moved towards the language server protocol (LSP) as the primary way to enable editor tooling. My language should be designed with the LSP and compiler-as-a-service usage in mind from the beginning. The compiler pipeline should be modular and accessible from a library API, so, for instance, each community-driven tool doesn't have to re-implement a parser.
+Additionally, programming communities have increasingly moved towards the [language server protocol (LSP)](https://microsoft.github.io/language-server-protocol/) as the primary way to enable editor tooling. My language should be designed with the LSP and compiler-as-a-service usage in mind from the beginning. The compiler pipeline should be modular and accessible from a library API, so, for instance, each community-driven tool doesn't have to re-implement a parser.
 
 Supporting all the features of best-in-class tooling from mainstream languages is difficult and time-consuming, but I think focusing at first on ease-of-use will help drive support, adoption, and further development.
 
