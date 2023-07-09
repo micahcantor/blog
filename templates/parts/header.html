@@ -1,6 +1,5 @@
 <div class="page-title">
-  {% set profile = resize_image(path="../static/images/profile.jpg", width=50, height=50) %}
-  <img src={{ profile.url }} alt="headshot of me">
+  <img src={{ resize_image(path="../static/images/profile.jpg", width=50, height=50) }} alt="headshot of me">
   <h1>Micah Cantor</h1>
   <div class="social-icons">
     <a aria-label="github" class="no-default-link" href="https://github.com/micahcantor">
