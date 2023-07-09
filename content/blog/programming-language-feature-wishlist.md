@@ -1,7 +1,7 @@
 +++
 title = "My Programming Language Feature Wishlist"
 date = 2023-07-09
-description = "All the features I want in a modern general-purpose language"
+description = "All the features I want in a modern general-purpose language."
 [taxonomies]
 tags = ["programming-languages", "compilers"]
 +++
