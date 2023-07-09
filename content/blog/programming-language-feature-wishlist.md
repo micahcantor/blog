@@ -12,7 +12,7 @@ For this post, I want to focus specifically on features for a *general-purpose* 
 
 I also want to focus only on statically typed languages here. I think that dynamic type checking can be convenient, but for most large programs a static types are useful for organization and correctness. A few of the features on the list involve type systems so I thought it'd be easier not to repeat that preference each time.
 
-After discussing the features I think are most important, I'll discuss a few candidate languages that come close and what they're missing in my view.
+Throughout this post, I'll refer to a language with these features as "my" language as a shorthand for "my language of choice" and not necessarily one that I created. After discussing the features I think are most important, I'll discuss a few candidate languages that have some of these features but have one or more drawbacks.
 
 ## The Wishlist
 
