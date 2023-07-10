@@ -1,5 +1,5 @@
 +++
-title = "My Programming Language Feature Wishlist"
+title = "My programming language feature wishlist"
 date = 2023-07-09
 description = "All the features I want in a modern general-purpose language."
 [taxonomies]
@@ -16,7 +16,7 @@ Throughout this post, I'll refer to a language with these features as "my" langu
 
 ## The Wishlist
 
-### Generic Algebraic Data Types
+### Generic algebraic data types
 
 My language should support algebraic data types (ADTs) as the primary way for defining new data structures. ADTs generalize the pairing of `struct` and `enum` from C or Java with the ability to store data (like primitives or other ADTs) within each `enum` variant.
 
@@ -26,7 +26,7 @@ For increased flexibility, ADTs in my language should support type parameters. P
 
 Generic ADTs allow the user to define data structures that aren't pinned to a specific type. For instance, instead of needing to create distinct `IntList` and `FloatList` types as one would in a language without generics like C, we can create a single type `List a` that's parameterized by the type of list contents. This means we don't need to duplicate the `List` interface for each particular type, increasing code reuse.
 
-### Type Constraints
+### Type constraints
 
 When using generic types, it's natural to want a way to constrain the type of the parameter from *any* type to instead some subset. For instance, in Haskell we can express a sort function with the following type signature:
 
@@ -48,7 +48,7 @@ which takes two order-able elements and returns a boolean. However the implement
 
 Therefore, constraints allow for a form of dynamic dispatch, similar to interfaces in an object-oriented language like Java. However, constraints tend to be more lightweight and flexible than interfaces, since they're not limited to operating on classes as they are in Java, and don't need to account for the complexity added by OO-style inheritance.
 
-### Parallel Runtime and Concurrency Primitives
+### Parallel runtime and concurrency primitives
 
 My programming language's runtime should be designed with support for concurrent and parallel programs in mind from the beginning. [OCaml recently underwent a years-long overhaul](https://dl.acm.org/doi/10.1145/3408995) in the language's implementation to add backward-compatible parallelism to the language. Meanwhile others like [Python continue to suffer from their language's dependence](https://wiki.python.org/moin/GlobalInterpreterLock) on their initial single-threaded focus.
 
@@ -56,13 +56,13 @@ My language should also provide some language support for asynchronous or non-bl
 
 Different languages take other approaches to these problems, and I'm not sure what's best. However, my language should decide on some concurrency primitives and syntax from the beginning. If they're added in later, then libraries tend to be split along lines of different concurrency conventions. For instance, in the JS, Rust, and Python communities, new libraries with different APIs needed to be created with the introduction of `async`/`await` causing users to "pick sides" on which libraries to use.
 
-### Minimal C-like Syntax
+### Minimal C-like syntax
 
 I believe a language's syntax is relatively unimportant compared to its other features. However, if your language's syntax is significantly different from a standard C-like style, I think it will hurt its adoption and growth. For instance, see any online discussion about languages in the Lisp family and they tend to fixate on the "polarizing" syntax. A non-traditional syntax can distract from discussion and adoption of more important language features.
 
 Even within a C-style syntactic framework, adding a lot verbose or novel syntax can also be difficult for newcomers. See Rust, for instance, which has added a lot of syntactic noise and cruft, adding to its difficulty. Therefore, my programming language should be thoughtful in its syntax design, but err on the side of tradition and minimalism when deciding between equivalent options. 
 
-### Great Error Messages
+### Great error messages
 
 My programming language should have error messages that are clear, concise, and human readable. Error messages should clearly and correctly outline:
 
@@ -74,7 +74,7 @@ A good error message aims to communicate these points both to beginners and expe
 
 Importantly, the compiler authors should maintain that any error message that doesn't clearly communicate all of the above standards is a bug. Moreover, as error messages are one of the main ways users interact with the compiler, these bugs should be a top priority for maintainers to fix.
 
-### Intuitive Installation and Tooling
+### Intuitive installation and tooling
 
 Users expect a programming language, even ones that are new or just prototypes, to be easy to install and run. It shouldn't take longer than 5 to 10 minutes to go from the landing page to running "hello world" in my language. My language's command line tools should be fast, reliable, and clear when an installation or build has failed.
 
@@ -82,7 +82,7 @@ Additionally, programming communities have increasingly moved towards the [langu
 
 Supporting all the features of best-in-class tooling from mainstream languages is difficult and time-consuming, but I think focusing at first on ease-of-use will help drive support, adoption, and further development.
 
-## Discussion and Contending Languages
+## Discussion and contending languages
 
 There are several languages that in my view come close to matching this feature wishlist, a few of which I've already mentioned in this post. For each, I'll write about which features they include, which they don't, and some drawbacks and benefits I see in each.
 
