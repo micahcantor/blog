@@ -1,6 +1,6 @@
 +++
 title = "Improving the dead code elimination algorithm in js_of_ocaml"
-date = 2023-10-07
+date = 2023-11-13
 description = "Reducing code size with a new optimization pass in js_of_ocaml"
 [taxonomies]
 tags = ["ocaml", "programming-languages"]
