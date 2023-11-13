@@ -2,7 +2,6 @@
 title = "Improving the dead code elimination algorithm in js_of_ocaml"
 date = 2023-10-07
 description = "Reducing code size with a new optimization pass in js_of_ocaml"
-draft = true
 [taxonomies]
 tags = ["ocaml", "programming-languages"]
 +++
@@ -333,4 +332,4 @@ For those interested, all of the details of the changes described in this articl
 
 ### Acknowledgements
 
-Thank you to everyone at Tarides for supporting this work through my summer internship. In particular, thank you to my incredible mentors, [Jérôme Vouillon](https://www.irif.fr/~vouillon/), [Olivier Nicole](https://otini.chnik.fr/), and [Jan Midtgaard](https://janmidtgaard.dk/) — without their patience and expertise this work couldn't have been completed. Also thank you to [Hugo Heuzard](https://github.com/hhugo) for his extensive reviews and feedback on my pull request.
+Thank you to everyone at Tarides for supporting this work through my summer internship. In particular, thank you to my incredible mentors, [Jérôme Vouillon](https://www.irif.fr/~vouillon/), [Olivier Nicole](https://otini.chnik.fr/), and [Jan Midtgaard](https://janmidtgaard.dk/) — without their patience and expertise this work couldn't have been completed. Also a huge thank you to [Hugo Heuzard](https://github.com/hhugo) for his extensive reviews and feedback on my pull request.

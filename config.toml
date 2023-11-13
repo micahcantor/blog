@@ -12,7 +12,7 @@ generate_feed = true
 
 [markdown]
 highlight_code = true
-highlight_theme = "inspired-github"
+highlight_theme = "ayu-mirage"
 
 [extra]
 social_media = [
