@@ -213,15 +213,9 @@ main.article-content {
     }
   }
 
-  code {
-    background: black;
-    color: white;
-    font-weight: 600;
-  }
-
   pre {
-    background: black !important;
-    color: white;
+    background-color: #eee;
+    font-weight: 600;
     padding: 1rem;
     border-radius: 10px;
     overflow-x: auto;

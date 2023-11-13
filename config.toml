@@ -12,7 +12,7 @@ generate_feed = true
 
 [markdown]
 highlight_code = true
-highlight_theme = "one-dark"
+highlight_theme = "inspired-github"
 
 [extra]
 social_media = [

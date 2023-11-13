@@ -33,7 +33,7 @@ But `js_of_ocaml` was created before the adoption of ES6, and so instead it comp
 
 To motivate this discussion, let's look at a small program that sees a large change from the new pass. Here's an OCaml program that creates two instances of the `Set` module and uses a few of its functions:
 
-```ocaml
+```ml
 module Int_set = Set.Make (Int)
 module String_set = Set.Make (String)
 
@@ -58,7 +58,7 @@ To understand how the new pass works, we first need to understand the original d
 
 To determine whether code is reachable, we first need to build the **control-flow graph** (CFG). This is an intermediate representation of the program where nodes are blocks of code and edges are control flow statements, like conditionals or function calls. The algorithm performs a depth-first search of this graph to determine which blocks and variables are used. As an example, consider the following small program:
 
-```ocaml
+```ml
 let foo x = if x == 0 then x + 1 else x - 1 in
 let bar x = x + 1 in
 foo 1
@@ -72,7 +72,7 @@ Starting from the entry point `foo 1`, we search the graph and mark the blocks c
 
 With the CFG, it's easy to determine reachability for blocks, but understanding if variables are used is trickier. Consider the following example:
 
-```ocaml
+```ml
 let y = 1 in
 let y = 2 in
 let x = y in 
@@ -81,7 +81,7 @@ print_int x
 
 At a glance, it's easy to see that the first assignment (`y = 1`) is dead code and can be removed, but how can we determine this in general? After all, `y` is used in the definition of `x`, which itself is printed out. The key is to first transform the variable names into **single static assignment** (SSA) form. In this representation, we give each variable a fresh name when it's reassigned or used as a function argument. The above program then looks like this:
 
-```ocaml
+```ml
 let x_1 = 1 in
 let x_2 = 2 in
 let x_3 = x_2 in
@@ -94,7 +94,7 @@ In this form it's clear that we can remove `x_1` from the program. Another impor
 
 With this approach, we can determine whether individual variables or whole blocks are used. But dead code analysis becomes more complicated if we try to determine whether the return value of a function is used. Note that because of side-effects, this task is different than determining whether a function is used at all. Consider this example:
 
-```ocaml
+```ml
 let foo x =
   print_int x;
   x + 1
@@ -104,13 +104,13 @@ ignore (foo 1)
 
 Even though the return value of `foo` is never used, we still can't eliminate the function entirely. If we did, the behavior of the program would change since we'd lose the side-effect of printing `x`. But since the return value of `foo` is never used, we could still save some space by modifying the definition of `foo` to be:
 
-```ocaml
+```ml
 let foo x = print_int x;
 ```
 
 This may not have as large of an effect on code size as removing `foo` entirely, but small optimizations like this can add up. Unfortunately, the problem of determining whether a return value is dead is significantly more difficult than our previous examples of dead code analysis. In fact, it's not a property we can determine with just a single traversal of the CFG. To see why, consider another example:
 
-```ocaml
+```ml
 let foo x =
   print_int x;
   x + 1
@@ -124,7 +124,7 @@ The corresponding CFG for this program looks like this:
 
 ![CFG for the previous example](./cfg2.svg)
 
-In this case, control moves from the entry block to the body of `foo`, and then is returned to the caller. On inspection, we can see that `y` is only used in `z`, and `z` is never used. Therefore, `y` and `foo` should both be marked dead. But crucially, this property can't be determined just from the CFG. Instead, we need to consider the liveness of each variable where `y` is used (in this case, just `z`). In fact, if `y` was used in the definition of 100 other variables, we would need to analyze the liveness each one to determine if `foo` is live or dead.
+In this case, control moves from the entry block to the body of `foo`, and then is returned to the caller. On inspection, we can see that `y` is only used in `z`, and `z` is never used. Therefore, `y` and `foo` should both be marked dead. But crucially, this property can't be determined just from the CFG. Instead, we need to consider the liveness of each variable where `y` is used (in this case, just `z`). 
 
 In essence, to determine the liveness of return values, we need a graph of all variables in the program, where edges represent dependencies between them. Suddenly, the task of dead code elimination seems much more difficult: rather than a single pass over the CFG, we need track the liveness of each variable, then propagate information about their usage back to all of their dependencies. This is indeed the strategy taken by the new pass that we'll describe in more detail later.
 
@@ -136,7 +136,7 @@ The restriction of dead code analysis to within functions is mostly sufficient, 
 
 In the low-level representation of OCaml bytecode, modules are just flat arrays of variables. For example, consider the `String` module:
 
-```ocaml
+```ml
 module String = struct
   let make n c = ... in
   let get s i = ... in
@@ -146,7 +146,7 @@ end
 
 In (pseudo) bytecode, `String` is represented as an array like so:
 
-```ocaml
+```ml
 let String = 
   let make n c = ... in
   let get s i = ... in
@@ -156,13 +156,13 @@ let String =
 
 Since functors are just functions from one module to another, in bytecode they're naturally represented as functions from one array to another. So when we create a particular instance of a functor in OCaml, the bytecode representation is just a normal function call. Take this for example:
 
-```ocaml
+```ml
 module String_set = Set.Make (String)
 ```
 
 In bytecode, this is essentially compiled to:
 
-```ocaml
+```ml
 let Set_make t =
   let t_singleton x = ... in 
   let t_add x s = ... in
@@ -184,7 +184,7 @@ With the background of the original algorithm established, we're now ready to di
 
 The first step of the new pass is to obtain a conservative estimate of the liveness of each variable. Rather than just a binary live or dead, each variable can have one of three states: `Top` (a live, non-block expression), `Live f` (a live block with a set of live fields `f`), or `Dead`. This is characterized in the type `live`:
 
-```ocaml
+```ml
 type live =
   | Top
   | Live of IntSet.t
@@ -201,7 +201,7 @@ With this information, we can determine the initial value for the liveness of a 
 
 As an example of how this works, let's look at this program, which is roughly in SSA form:
 
-```ocaml
+```ml
 let foo x =
   [|x.(0); x.(1)|]
 in
@@ -231,7 +231,7 @@ Once the initial liveness is computed, the next step is to propagate this inform
 
 The first step is to build the variable dependency graph, which is performed in a function called `usages`. The edges in this graph are directed, and can be of two types, which is captured by the type `usage_kind`:
 
-```ocaml
+```ml
 type usage_kind = Compute | Propagate
 ```
 
@@ -249,7 +249,7 @@ With the variable dependency graph constructed, the next step is to write the pr
 
 If a `Dead` variable `v` is used to compute a `Top` variable `w`, then `v` should also be `Top` since it can't be removed from the program. In this sense, `Top` "wins" when combined with other liveness values. Alternatively, if `v` is an array with `Live f1` and later we find that another set of fields `f2` are also live, then the total set of live fields is the union of `f1` and `f2`. Concretely, the function `join` is used to combine two liveness values:
 
-```ocaml
+```ml
 let join l1 l2 =
   match l1, l2 with
   | _, Top | Top, _ -> Top
@@ -268,7 +268,7 @@ To compute the liveness of a variable `v`, the `propagate` function must compute
 
 These rules are wrapped into a function `contribution y usage_kind`. Finally, to compute the total liveness of `x`, we use `fold` to join its current liveness and the liveness contribution of each dependency:
 
-```ocaml
+```ml
 Var.Map.fold
   (fun y usage_kind live -> join (contribution y usage_kind) live)
   (Var.Tbl.get uses x) (* dependencies of x *)
