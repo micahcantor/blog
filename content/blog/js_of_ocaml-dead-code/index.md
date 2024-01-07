@@ -6,8 +6,6 @@ description = "Reducing code size with a new global optimization pass in js_of_o
 tags = ["ocaml", "programming-languages"]
 +++
 
-*I'm looking for a full-time software engineering position starting in January 2024. If you or your team is hiring, please [reach out](mailto:micahcantor01@gmail.com)!*
-
 ## Introduction
 
 This summer I worked as a software engineer intern at [Tarides](https://tarides.com/) from their Paris office. My project centered on improving the dead code elimination algorithm in the OCaml to JavaScript compiler, [js_of_ocaml](https://github.com/ocsigen/js_of_ocaml). In this post, I'll give some background on why these changes were needed and an overview of the implementation of the new pass. Then, we'll benchmark the effect of the changes and talk about opportunities for future improvement.
