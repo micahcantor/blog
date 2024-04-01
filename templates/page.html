@@ -21,29 +21,36 @@
             </svg>
         </a>
         <h1>{{ page.title }}</h1>
-        <span>~</a>/blog/{{ page.slug }}</span>
-        <p>Published: <time>{{ page.date }}</time>{% if page.updated %}, Updated: <time>{{ page.updated }}</time>{% endif %}</p>
-        <div class="toc_container">
-            <p class="toc_title">Contents</p>
-            {% if page.toc %}
-            <ul>
-            {% for h1 in page.toc %}
-                <li>
-                    <a href="{{ h1.permalink | safe }}">{{ h1.title }}</a>
-                    {% if h1.children %}
-                        <ul>
-                            {% for h2 in h1.children %}
-                                <li>
-                                    <a href="{{ h2.permalink | safe }}">{{ h2.title }}</a>
-                                </li>
-                            {% endfor %}
-                        </ul>
-                    {% endif %}
-                </li>
-            {% endfor %}
-            </ul>
-            {% endif %}
-        </div>    
+        <p class="article-description">
+            <i>{{ page.description }}</i>
+        </p>
+        {% if page.date %}
+            <p>Published: <time>{{ page.date | date(format="%B %d, %Y") }}</time></p>
+        {% endif %}
+        <p>{% if page.updated %}, Updated: <time>{{ page.updated }}</time>{% endif %}</p>
+        {% if page.extra.show_toc %}
+            <div class="toc_container">
+                <p class="toc_title">Contents</p>
+                {% if page.toc %}
+                <ul>
+                {% for h1 in page.toc %}
+                    <li>
+                        <a href="{{ h1.permalink | safe }}">{{ h1.title }}</a>
+                        {% if h1.children %}
+                            <ul>
+                                {% for h2 in h1.children %}
+                                    <li>
+                                        <a href="{{ h2.permalink | safe }}">{{ h2.title }}</a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+                </ul>
+                {% endif %}
+            </div>  
+        {% endif %}  
         <hr /> 
         {{ page.content | safe }}
     </main>
