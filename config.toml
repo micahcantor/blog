@@ -10,6 +10,10 @@ build_search_index = false
 
 generate_feed = true
 
+taxonomies = [
+    {name = "tags", render = false}
+]
+
 [markdown]
 highlight_code = true
 highlight_theme = "ayu-mirage"

@@ -4,6 +4,8 @@ date = 2022-05-29
 description = "A toy compiler for a subset of JavaScript to ARM assembly, using Haskell."
 [taxonomies]
 tags = ["haskell", "programming-languages"]
+[extra]
+show_toc = true
 +++
 
 I recently got a copy of the book [*Compiling to Assembly from Scratch*](https://keleshev.com/compiling-to-assembly-from-scratch/) by Vladamir Keleshev, which details how to write a compiler for a subset of JavaScript to 32-bit ARM assembly code. The choice to use ARM assembly is mainly for its simplicity in comparison to x86. 

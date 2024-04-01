@@ -4,6 +4,8 @@ date = 2022-12-22
 description = "A progress report on work on synthesizing Haskell code using the GHC."
 [taxonomies]
 tags = ["haskell", "programming-languages"]
+[extra]
+show_toc = true
 +++
 
 This semester I worked with [Peter-Michael Osera](https://osera.cs.grinnell.edu/) at Grinnell College on a project exploring how to use the Haskell GHC to generate some simple, even "obvious," function definitions. The goal was to build a practical framework for interacting with GHC internals to query a Haskell program for information on types and terms defined in scope. We could use this information to generate definitions of functions that can only be completed in one straightforward way.

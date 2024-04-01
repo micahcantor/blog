@@ -4,6 +4,8 @@ date = 2023-11-13
 description = "Reducing code size with a new global optimization pass in js_of_ocaml."
 [taxonomies]
 tags = ["ocaml", "programming-languages"]
+[extra]
+show_toc = true
 +++
 
 ## Introduction
