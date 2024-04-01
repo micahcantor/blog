@@ -14,7 +14,7 @@
             <a class="item no-default-link" href={{page.permalink | safe }}>
             <div>
                 <h3>{{ page.title }}</h3>
-                <time>{{ page.date }}</time>
+                <time>{{ page.date | date(format="%B %d, %Y") }}</time>
                 <p>{{ page.description }}</p>
                 <div class="chips">
                     {% if page.taxonomies.tags and page.taxonomies.tags | length > 0 %}
