@@ -31,7 +31,7 @@ The creators of C did the same, but were also limited by the feasibility of a fe
 But modern programming languages are far less limited in the scope of features they choose to include and their capacity to do so.
 This has led many languages to adopt a new and somewhat confounding adjective: *multi-paradigm*.
 
-Indeed, almost all modern languages are best described as multi-paradigm. 
+Indeed, almost all modern languages are best described as multi-paradigm, which deflates the significance of the term. 
 The latest versions of Python, JavaScript, and even Java all offer the features needed for functional programming alongside imperative and object-oriented progamming. The same could be said for C++, C#, OCaml, and more.
 
 Due to the relative feature-set equality between languages, I believe that programming paradigms are now best understood as a *style* of programming, rather than as an exclusive set of features. Since almost all languages are multi-paradigm, we can't categorize an entire language under a single paradigm. But we can still compare how particular programs, or parts of programs, use one paradigm or another across languages.
@@ -40,7 +40,8 @@ General purpose languages of the 21st century don't define themselves by a singl
 The unifying aspect of new languages such as [Rust](https://www.rust-lang.org/), [Nim](https://nim-lang.org/), and [Gleam](https://gleam.run/) is that they were designed from the beginning to be **beyond paradigms**.
 
 These post-paradigm languages draw on the best features of past languages and refuse to limit the programmer to a single style. 
-This puts more power and creativity in the hands of the programmer rather than the language designer.
+This puts more power and creativity in the hands of the programmer rather than the language designer. 
+Programming styles in these languages are meant to be mismatched and combined, rather than adhered to under a single dogmatic paradigm.
 
 Programming languages of the future will continue to prioritize the inclusion of the best individual features in their language or tooling, regardless of paradigm. I think there will continue to be a great diversity between different languages, but the best aspects of each programming paradigm refuse to be siloed.
 
