@@ -23,7 +23,7 @@
         {% block css %}
             <link href="{{ get_url(path='style.css', trailing_slash=false) | safe }}" rel="stylesheet"/>
         {% endblock css %}
-        
+
         <title>{% block title %}{{ config.title }}{% endblock title%}</title>
         <link rel="icon" href="/images/icon.png">
     </head>
@@ -31,7 +31,7 @@
         {% block content %}
             <p>please fill this with a template</p>
         {% endblock content %}
-        
+
         <footer>
             <hr text="&copy; Copyright {{ now() | date(format='%Y') }}" />
             {% if config.extra.social_media and config.extra.social_media | length > 0 %}

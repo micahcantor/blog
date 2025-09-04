@@ -1,4 +1,4 @@
-base_url = "https://micahcantor.com"
+base_url = "https://www.micahcantor.com"
 
 description = "Micah Cantor's personal site."
 
@@ -8,7 +8,7 @@ compile_sass = true
 
 build_search_index = false
 
-generate_feed = true
+generate_feeds = true
 
 taxonomies = [
     {name = "tags", render = false}
